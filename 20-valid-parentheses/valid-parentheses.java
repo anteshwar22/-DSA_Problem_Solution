@@ -1,32 +1,31 @@
-import java.util.Stack;
-
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            
-            switch (c) {
-                // If it's an opening bracket, push the expected closing bracket
-                case '(':
-                    stack.push(')');
-                    break;
-                case '{':
-                    stack.push('}');
-                    break;
-                case '[':
+        Stack<Character>  stack =new Stack<>();
+    if(s.length()<=1) return false;
+
+     for(int i=0;i<s.length();i++)
+     {
+        char ch=s.charAt(i);
+
+        switch(ch){
+            case '(':
+                     stack.push(')');
+                     break;
+            case '[':
                     stack.push(']');
                     break;
-                // If it's a closing bracket, verify it matches the stack top
-                default:
-                    if (stack.isEmpty() || stack.pop() != c) {
+            case '{':
+                    stack.push('}');
+                    break;
+            default:
+                    if(stack.empty() || stack.pop() !=ch)
+                    {
                         return false;
                     }
-            }
         }
-        
-        // If the stack is empty, all brackets were matched correctly
-        return stack.isEmpty();
+   
+     }
+
+          return stack.empty();
     }
 }
